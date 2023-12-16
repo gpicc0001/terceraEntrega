@@ -4,13 +4,13 @@ import categories from '../Data/categories.json'
 import CategoryItem from './CategoryItem'
 
 
-const Categories = () => {
+const Categories = ({setCategorySelected}) => {
   return (
     <FlatList 
         style={styles.container}
         data={categories} //de donde saco la informacion. 
         keyExtractor={item => item} //recorro el arreglo con el item directamente porque son unicos.
-        renderItem={({item}) => <CategoryItem category ={item} />}
+        renderItem={({item}) => <CategoryItem setCategorySelected={setCategorySelected} category ={item} />}
 
     
     />
