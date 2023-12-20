@@ -4,8 +4,11 @@ import  Home  from './src/Screens/Home';
 import ItemListCategories from './src/Screens/ItemListCategories';
 import ItemDetail from './src/Screens/ItemDetail';
 import { useEffect, useState } from 'react';
-import {colors} from './src/Global/colors'
+import {colors} from './src/Global/colors';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
+const Stack = createNativeStackNavigator()
 
 const App = () => {
 
