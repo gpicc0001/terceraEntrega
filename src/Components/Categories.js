@@ -10,9 +10,7 @@ const Categories = ({setCategorySelected}) => {
         style={styles.container}
         data={categories} //de donde saco la informacion. 
         keyExtractor={item => item} //recorro el arreglo con el item directamente porque son unicos.
-        renderItem={({item}) => <CategoryItem setCategorySelected={setCategorySelected} category ={item} />}
-
-    
+        renderItem={({item}) => <CategoryItem setCategorySelected={setCategorySelected} category ={item} />}    
     />
   )
 }

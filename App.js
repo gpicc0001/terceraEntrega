@@ -1,23 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import  Home  from './src/Screens/Home';
 import ItemListCategories from './src/Screens/ItemListCategories';
 import ItemDetail from './src/Screens/ItemDetail';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {colors} from './src/Global/colors'
 
 
 const App = () => {
 
   const [categorySelected, setCategorySelected] = useState('')
+  const [productDetailId, setProductDetailId] = useState(0)
+
+  useEffect(() => {
+    console.log(productDetailId);
+
+
+  },[productDetailId])
 
   return (
-    <View style={styles.container}>
-      {categorySelected ? <ItemListCategories category = {categorySelected} /> : <Home setCategorySelected = {setCategorySelected}/>}
-      
-      {/* <ItemDetail /> */}
-      
-      <StatusBar style="auto" />
-    </View>
+    <>
+        <StatusBar backgroundColor={colors.green1} style="auto" />
+
+        <SafeAreaView style={styles.container}>
+          {categorySelected ? 
+            productDetailId != 0 ?
+                <ItemDetail productDetailId={productDetailId} setProductDetailId={setProductDetailId}/>
+              :
+                <ItemListCategories category = {categorySelected} 
+                setCategorySelected={setCategorySelected} 
+                setProductDetailId ={setProductDetailId}
+                /> 
+          : 
+              
+          <Home setCategorySelected = {setCategorySelected}/>
+            
+          }
+          
+          
+        </SafeAreaView>
+
+
+    </>
+
   );
 }
 

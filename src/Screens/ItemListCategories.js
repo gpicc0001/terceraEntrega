@@ -1,4 +1,4 @@
-import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import Header from '../Components/Header'
 import Search from '../Components/Search';
 import allProducts from '../Data/products.json'
@@ -6,7 +6,7 @@ import ProductItem from '../Components/ProductItem';
 import { useEffect, useState } from 'react';
 
 
-const ItemListCategories = ({category}) => {
+const ItemListCategories = ({category,setCategorySelected, setProductDetailId}) => {
 
   const [keyword, setKeyword] = useState('')
   const [products, setProducts] = useState(allProducts)
@@ -31,11 +31,12 @@ const ItemListCategories = ({category}) => {
     <>
       <Header />
       <Search keyword ={keyword} setKeyword ={setKeyword}/>
+      <Button title='Go Back' onPress={() => setCategorySelected('')}/>
       <FlatList 
         style={styles.container}
         data={products}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <ProductItem item={item}/>}
+        renderItem={({item}) => <ProductItem item={item} setProductDetailId={setProductDetailId}/>}
       
       />
     

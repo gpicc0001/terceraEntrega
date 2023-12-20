@@ -1,18 +1,26 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View,Image, useWindowDimensions, Pressable } from 'react-native'
+import React, { useEffect } from 'react'
 import {colors} from '../Global/colors'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, setProductDetailId}) => {
+    const{width, height} = useWindowDimensions()
+
+    useEffect(() => {
+        console.log(width);
+
+
+    },[width])
+
   return (
     <>
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={() => setProductDetailId(item.id)}>
             <Image 
                 style={styles.image}
                 resizeMode='cover'
                 source={{uri:item.thumbnail}}
             />
             <Text style={styles.text}>{item.title}</Text>
-        </View>
+        </Pressable>
     
     
     </>

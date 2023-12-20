@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {colors} from '../Global/colors'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import Categories from './Categories';
 
 
 
@@ -11,6 +12,8 @@ const Search = ({setKeyword}) => {
 
     const [input, setInput] = useState('')
     const [error, setError] = useState('')
+    
+
 
     const seach = () =>{
     const expression = /.*[0-9].*/;
@@ -28,6 +31,9 @@ const Search = ({setKeyword}) => {
         setInput('')
         setError('')
     }
+
+
+    
      
   return (
     <>
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
     },
     input:{
       backgroundColor: colors.green2,
-      width:'75%',
+      width:'65%',
       borderWidth:2,
       borderRadius:5,
       paddingHorizontal:10,
