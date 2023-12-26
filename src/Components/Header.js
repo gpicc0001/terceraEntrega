@@ -2,7 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/colors'
 
-const Header = ({title ="Categorias"}) => {
+const Header = ({title}) => {
+
+
   return (
     <View style={styles.container} >
       <Text style={styles.text} >{title}</Text>
@@ -23,6 +25,8 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:30,
+        fontFamily:'Josefin'
+        
     }
 
 

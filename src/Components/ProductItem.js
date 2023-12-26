@@ -2,18 +2,18 @@ import { StyleSheet, Text, View,Image, useWindowDimensions, Pressable } from 're
 import React, { useEffect } from 'react'
 import {colors} from '../Global/colors'
 
-const ProductItem = ({item, setProductDetailId}) => {
+const ProductItem = ({item, navigation, route}) => {
+
     const{width, height} = useWindowDimensions()
 
     useEffect(() => {
         console.log(width);
 
-
     },[width])
 
   return (
     <>
-        <Pressable style={styles.container} onPress={() => setProductDetailId(item.id)}>
+        <Pressable style={styles.container} onPress={() => navigation.navigate('Product',{id:item.id}) }>
             <Image 
                 style={styles.image}
                 resizeMode='cover'

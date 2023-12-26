@@ -1,24 +1,22 @@
 import { StyleSheet, Text, View, Image, Pressable, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header'
 import allProduct from '../Data/products.json'
 import{colors} from '../Global/colors'
 
-const ItemDetail = ({productDetailId, setProductDetailId}) => {
+const ItemDetail = ({navigation, route}) => {
 
   const [product, setProduct] = useState({})
+  const{id} = route.params
 
   useEffect(() => {
-    const productFinded = allProduct.find(product => product.id === productDetailId)
+    const productFinded = allProduct.find(product => product.id === id)
     setProduct(productFinded)
 
-  },[productDetailId])
+  },[id])
 
   return (
     <>
       <View style={styles.container}>
-        <Header title='Product'/>
-        <Button title='Go Back' onPress={() => setProductDetailId(0)}/>
         <Image 
         style={styles.image}
         source={{uri:product.thumbnail}}

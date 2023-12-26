@@ -7,41 +7,21 @@ import { useEffect, useState } from 'react';
 import {colors} from './src/Global/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Navigator from './src/navigation/Navigator';
+import { useFonts } from 'expo-font';
 
-const Stack = createNativeStackNavigator()
 
 const App = () => {
 
-  const [categorySelected, setCategorySelected] = useState('')
-  const [productDetailId, setProductDetailId] = useState(0)
+  const [fontLoaded] = useFonts({Josefin: require('./assets/fonts/JosefinSans-Bold.ttf')})
 
-  useEffect(() => {
-    console.log(productDetailId);
-
-
-  },[productDetailId])
+  if (!fontLoaded) return null
 
   return (
     <>
         <StatusBar backgroundColor={colors.green1} style="auto" />
-
-        <SafeAreaView style={styles.container}>
-          {categorySelected ? 
-            productDetailId != 0 ?
-                <ItemDetail productDetailId={productDetailId} setProductDetailId={setProductDetailId}/>
-              :
-                <ItemListCategories category = {categorySelected} 
-                setCategorySelected={setCategorySelected} 
-                setProductDetailId ={setProductDetailId}
-                /> 
-          : 
-              
-          <Home setCategorySelected = {setCategorySelected}/>
-            
-          }
-          
-          
-        </SafeAreaView>
+        <Navigator />
+        
 
 
     </>
@@ -59,3 +39,41 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
 });
+
+
+
+
+
+
+
+
+
+
+ // const [categorySelected, setCategorySelected] = useState('')
+// const [productDetailId, setProductDetailId] = useState(0)
+
+
+  // useEffect(() => {
+  //   console.log(productDetailId);
+
+
+  // },[productDetailId])
+
+
+{/* <SafeAreaView style={styles.container}>
+          {categorySelected ? 
+            productDetailId != 0 ?
+                <ItemDetail productDetailId={productDetailId} setProductDetailId={setProductDetailId}/>
+              :
+                <ItemListCategories category = {categorySelected} 
+                setCategorySelected={setCategorySelected} 
+                setProductDetailId ={setProductDetailId}
+                /> 
+          : 
+              
+          <Home setCategorySelected = {setCategorySelected}/>
+            
+          }
+          
+          
+        </SafeAreaView> */}
