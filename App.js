@@ -7,20 +7,21 @@ import { useEffect, useState } from 'react';
 import {colors} from './src/Global/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Navigator from './src/navigation/Navigator';
+import TabNavigator from './src/navigation/TabNavigator';
 import { useFonts } from 'expo-font';
 
 
 const App = () => {
 
   const [fontLoaded] = useFonts({Josefin: require('./assets/fonts/JosefinSans-Bold.ttf')})
+  
 
   if (!fontLoaded) return null
 
   return (
     <>
         <StatusBar backgroundColor={colors.green1} style="auto" />
-        <Navigator />
+        <TabNavigator />
         
 
 
