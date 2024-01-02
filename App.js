@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import TabNavigator from './src/navigation/TabNavigator';
 import { useFonts } from 'expo-font';
-
+import { store } from './src/app/store'
+import { Provider } from 'react-redux'
 
 const App = () => {
 
@@ -21,7 +22,9 @@ const App = () => {
   return (
     <>
         <StatusBar backgroundColor={colors.green1} style="auto" />
-        <TabNavigator />
+        <Provider store={store}>
+          <TabNavigator />   
+        </Provider>
         
 
 
