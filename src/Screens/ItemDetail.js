@@ -1,18 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable, Button } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import allProduct from '../Data/products.json'
+
+import { useSelector } from 'react-redux'
 import{colors} from '../Global/colors'
 
 const ItemDetail = ({navigation, route}) => {
 
-  const [product, setProduct] = useState({})
-  const{id} = route.params
+const product = useSelector((state) => state.shop.value.productSelected)
 
-  useEffect(() => {
-    const productFinded = allProduct.find(product => product.id === id)
-    setProduct(productFinded)
 
-  },[id])
 
   return (
     <>

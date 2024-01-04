@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import {colors} from '../Global/colors'
 import CardShadow from '../Wrappers/CardShadow'
 import { useSelector, useDispatch } from 'react-redux'
-import setProductsFilteredByCategory from '../features/shop/shopSlice'
+import {setProductsFilteredByCategory} from '../features/shop/shopSlice'
 
 
 

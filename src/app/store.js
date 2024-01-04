@@ -7,8 +7,5 @@ export const store = configureStore({
     reducer: {
       counter: counterReducer,
       shop: shopReducer
-
-
-
     },
   })
