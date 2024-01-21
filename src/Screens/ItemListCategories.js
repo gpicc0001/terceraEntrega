@@ -1,23 +1,27 @@
 import { FlatList, StyleSheet } from 'react-native'
-
 import Search from '../Components/Search';
-import allProducts from '../Data/products.json'
 import ProductItem from '../Components/ProductItem';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useGetProductsQuery } from '../app/services/shopServices';
 
 
 const ItemListCategories = ({navigation, route}) => {
-  const productsFilteredByCategory = useSelector(state => state.shop.value.productsFilteredByCategory)
+  const {category} = route.params //puedo tomar la navegacion de CategoryItem.
+  const {data, isLoading, error} = useGetProductsQuery(category)
   const [keyword, setKeyword] = useState('')
-  const [products, setProducts] = useState(productsFilteredByCategory)
+  const [products, setProducts] = useState()
+
+  
 
   useEffect(() => {
-      
-      const productsFiltered = productsFilteredByCategory.filter(product => product.title.includes(keyword))
-      setProducts(productsFiltered)
 
-  },[keyword, productsFilteredByCategory])
+      if(!isLoading){
+        const dataArray = Object.values(data)
+        const productsFiltered = dataArray.filter(product => product.title.includes(keyword)) //filtro del buscador
+        setProducts(productsFiltered)
+      } 
+
+  },[keyword,data])
   //useEffect, es una funcion q recibe dos parametros, una funcion anonima y el segundo un estado q cada vez q sufra una modificacion va a ejecutar la funcion anonima. lo q esta adentro solo se va a ejecutar cuando carga la pagina
 
   return (
@@ -26,7 +30,7 @@ const ItemListCategories = ({navigation, route}) => {
       <Search keyword ={keyword} setKeyword ={setKeyword}/>
       <FlatList 
         style={styles.container}
-        data={products}
+        data={data}
         keyExtractor={item => item.id}
         renderItem={({item}) => <ProductItem item={item} navigation={navigation} route = {route} />}
       
