@@ -30,7 +30,7 @@ const ItemListCategories = ({navigation, route}) => {
       <Search keyword ={keyword} setKeyword ={setKeyword}/>
       <FlatList 
         style={styles.container}
-        data={data}
+        data={products}
         keyExtractor={item => item.id}
         renderItem={({item}) => <ProductItem item={item} navigation={navigation} route = {route} />}
       

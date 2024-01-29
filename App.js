@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react';
 import {colors} from './src/Global/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import TabNavigator from './src/navigation/TabNavigator';
 import { useFonts } from 'expo-font';
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
+import MainNavigator from './src/navigation/MainNavigator';
 
 const App = () => {
 
@@ -23,7 +23,7 @@ const App = () => {
     <>
         <StatusBar backgroundColor={colors.green1} style="auto" />
         <Provider store={store}>
-          <TabNavigator />   
+          <MainNavigator />   
         </Provider>
         
 
