@@ -1,38 +1,44 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddButton from '../Components/AddButton'
 import * as ImagePicker from 'expo-image-picker';
+import { useGetProfileImageQuery, usePostProfileImageMutation } from '../app/services/shopServices';
+import { useSelector } from 'react-redux';
 
-const ImageSelector = () => {
+const ImageSelector = ({navigation}) => {
 
-    const[image,setImage] = useState()
+    const[image,setImage] = useState("")
+    const [triggerProfileImage]= usePostProfileImageMutation()
+    const localId = useSelector(state => state.auth.value.localId)
+    const {data,isSuccess} = useGetProfileImageQuery(localId)
+
+    useEffect(() => {
+        if(isSuccess && data) setImage(data.image)
+
+    },[isSuccess])
 
     const pickImage = async ()=>{
 
         const{granted} = await ImagePicker.requestCameraPermissionsAsync()
         if(granted){
             let result = await ImagePicker.launchCameraAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
                 allowsEditing: true,
                 aspect: [4, 4],
                 quality: 0.5,
                 base64:true
             })
-
-            console.log(result);
-
             if(!result.canceled){
-                setImage(  'data:image/jpeg;base64,' + result.assets[0].base64)
+                setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
             }
-            
-
+            console.log(result);
         }
-
     }
 
     const confirmImage = () => {
 
-
+        triggerProfileImage({localId,image})
+        navigation.goBack()
 
     }
 

@@ -4,6 +4,7 @@ import { base_url } from '../../firebase/db'
 
 export const shopApi = createApi({
   reducerPath: 'shopApi', //como va a alamacenar en redux la info que vaya trayendo de firebase.
+  tagTypes:["image"],
   baseQuery: fetchBaseQuery({ baseUrl: base_url}),
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -22,7 +23,19 @@ export const shopApi = createApi({
         body:order
     }),
   }),
+  postProfileImage : builder.mutation({
+      query: (localId,image) => ({
+        url:`profileImage/${localId}.json`,
+        method:"PUT",
+        body:{image}
+    }),
+    invalidatesTags:["image"]
+  }),
+  getProfileImage: builder.query({
+    query: (localId) => `profileImage/${localId}.json`,
+    providesTags:["image"]
+  }),
 })
 })
 
-export const { useGetProductsQuery, useGetProductQuery, useGetCategoriesQuery, usePostOrdersMutation } = shopApi
+export const { useGetProductsQuery, useGetProductQuery, useGetCategoriesQuery, usePostOrdersMutation, usePostProfileImageMutation, useGetProfileImageQuery } = shopApi
