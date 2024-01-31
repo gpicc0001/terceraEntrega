@@ -11,6 +11,7 @@ import { useFonts } from 'expo-font';
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 import MainNavigator from './src/navigation/MainNavigator';
+import LocationSelector from './src/Screens/LocationSelector';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
         <StatusBar backgroundColor={colors.green1} style="auto" />
         <Provider store={store}>
           <MainNavigator />   
+          {/* <LocationSelector /> */}
         </Provider>
         
 
