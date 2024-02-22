@@ -12,8 +12,16 @@ import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 import MainNavigator from './src/navigation/MainNavigator';
 import LocationSelector from './src/Screens/LocationSelector';
+import { init } from './src/database';
 
-const App = () => {
+
+
+init()
+  .then(()=> console.log("DB Initialized"))
+  .catch(err => console.log(err))
+
+
+  const App = () => {
 
   const [fontLoaded] = useFonts({Josefin: require('./assets/fonts/JosefinSans-Bold.ttf')})
   

@@ -19,17 +19,20 @@ export const authSlice = createSlice({
             state.value.idToken = action.payload.idToken
             state.value.localId = action.payload.localId
             console.log(state.value);
-        }
-        // clearUser: (state) => {
+        },
+        clearUser: (state) => {
             // AGREGAR UN BOTON EN LA PANTALLA MAIN PARA QUE EJECUTE EL CLEAR USER.
-            // state.value.email = null
-            // state.value.idToken = null
+           state.value = {
+            email : null,
+            idToken: null,
+            localId: null
+           }
 
-        // }
+        }
     }
 
 })
 
-export const { setUser } = authSlice.actions
+export const { setUser, clearUser } = authSlice.actions
 
 export default authSlice.reducer

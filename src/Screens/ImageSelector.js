@@ -20,20 +20,23 @@ const ImageSelector = ({navigation}) => {
     const pickImage = async ()=>{
 
         const{granted} = await ImagePicker.requestCameraPermissionsAsync()
-        if(granted){
+        if (!granted) {
+            return false;
+        } else {
             let result = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
                 allowsEditing: true,
                 aspect: [4, 4],
                 quality: 0.5,
-                base64:true
-            })
-            if(!result.canceled){
-                setImage(`data:image/jpeg;base64,${result.assets[0].base64}`)
+                base64: true,
+            });
+            if (!result.canceled) {
+                setImage(`data:image/jpeg;base64,${result.assets[0].base64}`);
             }
             console.log(result);
         }
-    }
+    };
+
 
     const confirmImage = () => {
 
@@ -44,7 +47,7 @@ const ImageSelector = ({navigation}) => {
 
   return (
     <>
-        <View>
+        <View style={styles.container}>
             <Image 
             
                 source={image ? {uri: image} : require ('../../assets/user.png')}
@@ -65,4 +68,17 @@ const ImageSelector = ({navigation}) => {
 
 export default ImageSelector
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        paddingTop: 40,
+    },
+    image: {
+        width: 200,
+        height: 200,
+    },
+
+
+})
