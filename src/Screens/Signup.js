@@ -60,10 +60,11 @@ const Signup = ({navigation}) => {
     }
 
   return (
-    <View>
-      <View>
-        <Text>Signup</Text>
+    <View style={styles.container}>
+      <View style={{ width: '80%' }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>Signup</Text>
         <InputForm
+          style={styles.input}
           label= 'Email'
           value ={email}
           onChangeText ={(t) => setEmail(t)}
@@ -71,6 +72,7 @@ const Signup = ({navigation}) => {
           error={emailError}
         />
         <InputForm
+          style={styles.input}
           label= 'Password'
           value ={password}
           onChangeText ={(t) => setPassword(t)}
@@ -78,16 +80,17 @@ const Signup = ({navigation}) => {
           error={passwordError}
         />
         <InputForm
-        label= 'Confirm password'
-        value ={confirmPassword}
-        onChangeText ={(t) => setConfirmPassword(t)}
-        isSecure={true}
-        error={confirmPasswordError}
+          style={styles.input}
+          label= 'Confirm password'
+          value ={confirmPassword}
+          onChangeText ={(t) => setConfirmPassword(t)}
+          isSecure={true}
+          error={confirmPasswordError}
         />
-        <SubmitButton title="Send" onPress={onSubmit} />
-        <Text>Already have an account?</Text>
+        <SubmitButton style={{ marginBottom: 20 }} title="Send" onPress={onSubmit} />
+        <Text style={{ marginBottom: 10 }}>Already have an account?</Text>
         <Pressable onPress={() => navigation.navigate('Login')}>
-          <Text>login</Text>
+          <Text style={{ color: 'blue' }}>login</Text>
         </Pressable>
       </View>
     </View>
@@ -96,4 +99,17 @@ const Signup = ({navigation}) => {
 
 export default Signup
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+  container:{
+    flex: 1, 
+    justifyContent: 'center',
+    alignItems: 'center' 
+  },
+  input:{
+    borderWidth: 1, 
+    borderColor:'black',
+    marginBottom:20,
+
+  }
+})

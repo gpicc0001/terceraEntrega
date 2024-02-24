@@ -30,27 +30,29 @@ const Login = ({navigation}) => {
       }
   return (
    <>
-        <View>
-            <View>
-                <Text>Login to start</Text>
+        <View style={styles.container}>
+            <View style={styles.subContainer}>
+                <Text style={styles.title}>Login to start</Text>
                 <InputForm 
+                    style={styles.inputText}
                     label='Email'
                     value={email}
                     onChangeText = {(t) => setEmail(t)}
                     isSecure = {false}
-                    error = 'Hola Mundo'    
+                    error = ''    
                 />
                 <InputForm 
+                    style={styles.inputText}
                     label='Password'
                     value={password}
                     onChangeText = {(t) => setPassword(t)}
                     isSecure={true}
                     error =''
                 />
-                <SubmitButton onPress={onSubmit} title='Send' />
+                <SubmitButton style={styles.button} onPress={onSubmit} title='Send' />
                 <Text>Not have an account?</Text>
                 <Pressable onPress={() => navigation.navigate('Signup')}>
-                    <Text>Sign up</Text>
+                    <Text style={styles.buttonText}>Sign up</Text>
                 </Pressable>
             </View>
         </View>
@@ -64,4 +66,27 @@ const Login = ({navigation}) => {
 
 export default Login
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+    container:{
+        flex: 1, 
+        justifyContent: 'center',
+        alignItems: 'center' 
+      },
+    subContainer:{
+        width:'80%',
+    },
+    title:{
+        fontSize: 24, 
+        fontWeight: 'bold', 
+        marginBottom: 20
+    },
+    inputText:{
+        borderWidth: 1, 
+        borderColor:'black',
+        marginBottom:20,
+    },
+    buttonText:{
+        color:'blue'
+    }
+})
